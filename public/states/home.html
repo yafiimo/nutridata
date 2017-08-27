@@ -1,0 +1,11 @@
+<div ng-controller="FoodController as foodCtrl">
+
+  <h1>Food Data</h1>
+  <h3>Search for your food nutrient values</h3>
+
+  <form>
+    <input type="text" placeholder="Search for a food..." ng-model="foodCtrl.search.foodName">
+    <button ng-click="foodCtrl.searchFood()">Search</button>
+  </form>
+
+</div>
