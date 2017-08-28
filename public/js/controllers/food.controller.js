@@ -7,6 +7,8 @@ function FoodController(FoodFactory) {
     FoodFactory.searchFood(controller.search).then(
       (success) => {
         console.log('got food:', success.data);
+        controller.searchResults = success.data.list.item;
+        if(controller.searchResults.length > 0) controller.searched = true;
       },
       (error) => {
         console.warn('Error could not get food data:', error);
@@ -17,10 +19,12 @@ function FoodController(FoodFactory) {
   FoodController.$inject = ['FoodFactory'];
 
   function init() {
+    controller.searched = false;
+    controller.foodGroups = ['veggies', 'fruit'];
   }
   init();
 }
 
 angular
-  .module('food-data')
+  .module('nutri-data')
   .controller('FoodController', FoodController);

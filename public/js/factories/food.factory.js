@@ -1,7 +1,6 @@
 function FoodFactory($http) {
   return {
     searchFood: function(search) {
-      console.log(search);
       return $http({
         method: 'GET',
         url: `/search?q=${search.foodName}`
@@ -11,5 +10,5 @@ function FoodFactory($http) {
 }
 
 angular
-  .module('food-data')
+  .module('nutri-data')
   .factory('FoodFactory', FoodFactory);

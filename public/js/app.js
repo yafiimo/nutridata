@@ -12,5 +12,5 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 
 MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-angular.module('food-data', ['ui.router'])
+angular.module('nutri-data', ['ui.router'])
   .config(MainRouter);

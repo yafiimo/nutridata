@@ -1,11 +1,81 @@
 <div ng-controller="FoodController as foodCtrl">
 
-  <h1>Food Data</h1>
-  <h3>Search for your food nutrient values</h3>
+  <div class="jumbotron jumbotron-fluid text-white text-center" style="background-color: orange">
+    <div class="container">
+      <h1 class="display-4">Nutridata</h1>
+      <p class="lead">Search for your food's nutrition values</p>
+    </div>
+  </div>
 
-  <form>
-    <input type="text" placeholder="Search for a food..." ng-model="foodCtrl.search.foodName">
-    <button ng-click="foodCtrl.searchFood()">Search</button>
-  </form>
+  <div ng-if="!foodCtrl.searched" class="container text-center">
+    <form class="mt-2">
+      <div class="form-group row justify-content-center">
+
+        <div class="col-sm-8 mr-sm-0 pr-sm-1">
+          <input type="text" class="form-control" placeholder="Search for a food..." ng-model="foodCtrl.search.foodName">
+        </div>
+
+        <div class="col-sm-2 ml-sm-0 pl-sm-0 mt-1 mt-sm-0">
+          <button type="submit" class="btn btn-block" ng-click="foodCtrl.searchFood()">Search</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+
+
+
+  <div ng-if="foodCtrl.searched" class="container mt-4 text-center">
+    <h3>Filter your search:</h3>
+    <form class="mt-2">
+      <div class="form-group row justify-content-center">
+
+        <div ng-repeat="group in foodCtrl.foodGroups" class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" id="{{group}}" ng-value="group"> {{group}}
+          </label>
+        </div>
+
+
+      </div>
+
+      <div class="form-group row justify-content-center">
+
+        <div class="col-sm-8 mr-sm-0 pr-sm-1">
+          <input type="text" class="form-control" placeholder="Search for a food..." ng-model="foodCtrl.search.foodName">
+        </div>
+
+
+        <div class="col-sm-2 ml-sm-0 pl-sm-0 mt-1 mt-sm-0">
+          <button type="submit" class="btn btn-block" ng-click="foodCtrl.searchFood()">Apply</button>
+        </div>
+
+      </div>
+    </form>
+
+  <!-- Search Results -->
+    <div class="container text-center">
+
+      <table class="table table-sm">
+        <thead>
+          <tr class="text-white" style="background-color: orange">
+            <th>DB No</th>
+            <th>Name</th>
+            <th class="text-center">Group</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="food in foodCtrl.searchResults track by $index">
+            <th scope="row">{{ food.ndbno }}</th>
+            <td class="text-left">{{ food.name }}</td>
+            <td>{{ food.group }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
 
 </div>
