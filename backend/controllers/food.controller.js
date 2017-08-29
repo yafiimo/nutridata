@@ -19,18 +19,23 @@ function searchFood(req, res) {
       requestPromises.push(filteredSearch(name, filter));
     });
   } else {
-    requestPromises.push(filteredSearch(name, ''));
+    requestPromises.push(filteredSearch(name, filters));
   }
 
 
 
   Promise.all(requestPromises).then(
     (success) => {
-      const responseJson = [];
-      success.forEach((result) => {
-        responseJson.push(...result);
-      });
-      res.status(200).json(responseJson);
+      console.log('success', success);
+      if(success[0].errors) {
+        res.status(200).json(success[0]);
+      } else {
+        const responseJson = [];
+        success.forEach((result) => {
+          responseJson.push(...result);
+        });
+        res.status(200).json(responseJson);
+      }
     },
     (error) => {
       res.status(500).json(error);
@@ -100,7 +105,13 @@ function filteredSearch(name, filter) {
       }
       foodJson = JSON.parse(body);
 
-      resolve(foodJson.list.item);
+      console.log(foodJson);
+
+      if(foodJson.list) {
+        resolve(foodJson.list.item);
+      } else {
+        resolve(foodJson);
+      }
     });
   });
 }

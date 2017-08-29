@@ -4,6 +4,9 @@
 .table-font {
   font-size: 12px; }
 
+.home-form {
+  margin-top: 80px; }
+
 @media (min-width: 768px) {
   .table-font {
     font-size: 14px; } }
