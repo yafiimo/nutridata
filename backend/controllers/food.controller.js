@@ -10,7 +10,6 @@ function searchFood(req, res) {
     name = req.query.q;
   }
 
-  // var filters = "";
   const requestPromises = [];
 
   if(req.query.fg) {
@@ -22,48 +21,24 @@ function searchFood(req, res) {
     requestPromises.push(filteredSearch(name, filters));
   }
 
-
-
   Promise.all(requestPromises).then(
     (success) => {
-      console.log('success', success);
-      if(success[0].errors) {
+      if(success.every((result) => result.errors)) {
         res.status(200).json(success[0]);
       } else {
         const responseJson = [];
         success.forEach((result) => {
-          responseJson.push(...result);
+          if(result.list) {
+            responseJson.push(...result.list.item);
+          }
         });
-        res.status(200).json(responseJson);
+        res.status(200).json(responseJson.filter((val, index) => index < 70));
       }
     },
     (error) => {
       res.status(500).json(error);
     }
   );
-  //
-  //
-  // filters = 'baby foods';
-  //
-  // var options = {
-  //   url: `${FOOD_DATA_BASE_URL}/search/?format=json&q=${name}&max=50&ds=Standard Reference&fg=${filters}&api_key=${API_KEY}`
-  // };
-  //
-  // request(options, (error, response, body) => {
-  //   console.log(body);
-  //   var foodJson;
-  //
-  //   if (error) {
-  //     console.warn('searchFood: could not get food:', error);
-  //     res.status(500).json({message: 'could not get food'});
-  //     return;
-  //   }
-  //   foodJson = JSON.parse(body);
-  //
-  //
-  //
-  //   res.status(200).json(foodJson);
-  // });
 }
 
 function getFoodGroups(req, res) {
@@ -82,9 +57,6 @@ function getFoodGroups(req, res) {
       return;
     }
     foodGroupsJson = JSON.parse(body);
-
-
-
     res.status(200).json(foodGroupsJson);
   });
 }
@@ -92,8 +64,10 @@ function getFoodGroups(req, res) {
 
 function filteredSearch(name, filter) {
   return new Promise((resolve, reject) => {
+    let max = 30;
+    if(filter === '') max = 70;
     var options = {
-      url: `${FOOD_DATA_BASE_URL}/search/?format=json&q=${name}&max=70&ds=Standard Reference&fg=${filter}&api_key=${API_KEY}`
+      url: `${FOOD_DATA_BASE_URL}/search/?format=json&q=${name}&max=${max}&ds=Standard Reference&fg=${filter}&api_key=${API_KEY}`
     };
 
     request(options, (error, response, body) => {
@@ -107,11 +81,7 @@ function filteredSearch(name, filter) {
 
       console.log(foodJson);
 
-      if(foodJson.list) {
-        resolve(foodJson.list.item);
-      } else {
-        resolve(foodJson);
-      }
+      resolve(foodJson);
     });
   });
 }
