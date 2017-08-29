@@ -3,9 +3,16 @@ function FoodFactory($http) {
     searchFood: function(search) {
       return $http({
         method: 'GET',
-        url: `/search?q=${search.foodName}`
+        url: `/api/search?q=${search.foodName}`
+      });
+    },
+    getFoodGroups: function() {
+      return $http({
+        method: 'GET',
+        url: '/api/food-groups'
       });
     }
+
   };
 }
 
