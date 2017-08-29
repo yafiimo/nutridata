@@ -14,6 +14,13 @@ function FoodController(FoodFactory) {
   };
 
   controller.searchFood = () => {
+    const foodGroups = [];
+    for(var filter in controller.filters) {
+      if(controller.filters[filter] === true) {
+        foodGroups.push(filter);
+      }
+    }
+    controller.search.foodGroups = foodGroups.join('-');
     FoodFactory.searchFood(controller.search).then(
       (success) => {
         console.log('got food:', success.data);
@@ -22,7 +29,7 @@ function FoodController(FoodFactory) {
         controller.pageNumbers = [];
         if(!success.data.errors) {
           controller.searched = true;
-          controller.searchResults = success.data.list.item;
+          controller.searchResults = success.data;
           createPagesArray(controller.searchResults);
         } else {
           controller.searchResults = [];

@@ -1,4 +1,11 @@
 ::-webkit-scrollbar {
   display: none; }
 
+.table-font {
+  font-size: 12px; }
+
+@media (min-width: 768px) {
+  .table-font {
+    font-size: 14px; } }
+
 /*# sourceMappingURL=main.css.map */

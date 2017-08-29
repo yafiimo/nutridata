@@ -2,7 +2,7 @@
 
   <div class="jumbotron jumbotron-fluid text-white text-center" style="background-color: orange">
     <div class="container">
-      <h1 class="display-4">Nutridata</h1>
+      <h1 class="display-3">Nutridata</h1>
       <p class="lead">Search for your food's nutrition values</p>
     </div>
   </div>
@@ -38,21 +38,22 @@
       <div class="form-group">
         <p>
           <button class="btn" type="button" data-toggle="collapse"
-          data-target="#collapseExample" aria-expanded="false"
-          aria-controls="collapseExample">Toggle Filters
+                  data-target="#collapseFilters" aria-expanded="false"
+                  aria-controls="collapseFilters">Toggle Filters
         </button>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-          <div class="form-group row justify-content-center">
-            <div ng-repeat="group in foodCtrl.foodGroups" class="form-check form-check-inline">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="{{group.name}}" ng-value="group.name">{{group.name}}
-              </label>
+        </p>
+        <div class="collapse" id="collapseFilters">
+          <div class="card card-block">
+            <div class="form-group row justify-content-center">
+              <div ng-repeat="group in foodCtrl.foodGroups" class="form-check form-check-inline">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox"
+                         ng-model="foodCtrl.filters[group.name]">{{group.name}}
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
 
       <!-- edited search input -->
@@ -75,7 +76,7 @@
   <!-- Search Results -->
     <div ng-if="foodCtrl.searchResults.length > 0" class="container text-center">
 
-      <table class="table">
+      <table class="table table-warning table-font">
         <thead>
           <tr class="text-white" style="background-color: orange">
             <th>DB No</th>

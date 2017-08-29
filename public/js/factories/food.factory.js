@@ -3,7 +3,7 @@ function FoodFactory($http) {
     searchFood: function(search) {
       return $http({
         method: 'GET',
-        url: `/api/search?q=${search.foodName}`
+        url: `/api/search?q=${search.foodName}&fg=${search.foodGroups}`
       });
     },
     getFoodGroups: function() {
