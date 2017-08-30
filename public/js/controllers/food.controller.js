@@ -15,8 +15,8 @@ function FoodController(FoodFactory) {
 
   controller.searchFood = () => {
     const foodGroups = [];
-    for(var filter in controller.filters) {
-      if(controller.filters[filter] === true) {
+    for(const filter in controller.filters) {
+      if(controller.filters[filter]) {
         foodGroups.push(filter);
       }
     }
@@ -47,15 +47,14 @@ function FoodController(FoodFactory) {
   };
 
   function createPagesArray(guests) {
-    var pages = Math.ceil(guests.length/10);
-    for(var i = 1; i <= pages; i++) {
+    const pages = Math.ceil(guests.length/10);
+    for(let i = 1; i <= pages; i++) {
       controller.pageNumbers.push(i);
     }
   }
 
   function init() {
     controller.searched = false;
-    controller.pageNumbers = [];
   }
   init();
 }

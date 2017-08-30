@@ -9,9 +9,7 @@ function searchFood(req, res) {
   if(req.query.q) {
     name = req.query.q;
   }
-
   const requestPromises = [];
-
   if(req.query.fg) {
     filters = req.query.fg.split('-');
     filters.forEach((filter) => {
@@ -42,14 +40,12 @@ function searchFood(req, res) {
 }
 
 function getFoodGroups(req, res) {
-  // 'https://api.nal.usda.gov/ndb/list?format=json&lt=f&sort=n&api_key=DEMO_KEY'
-
-  var options = {
+  const options = {
     url: `${FOOD_DATA_BASE_URL}/list?format=json&lt=g&sort=n&api_key=${API_KEY}`
   };
 
   request(options, (error, response, body) => {
-    var foodGroupsJson;
+    let foodGroupsJson = {};
 
     if (error) {
       console.warn('getFoodGroups: could not get food groups:', error);
@@ -61,12 +57,11 @@ function getFoodGroups(req, res) {
   });
 }
 
-
 function filteredSearch(name, filter) {
   return new Promise((resolve, reject) => {
     let max = 30;
     if(filter === '') max = 70;
-    var options = {
+    const options = {
       url: `${FOOD_DATA_BASE_URL}/search/?format=json&q=${name}&max=${max}&ds=Standard Reference&fg=${filter}&api_key=${API_KEY}`
     };
 

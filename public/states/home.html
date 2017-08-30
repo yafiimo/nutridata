@@ -87,8 +87,8 @@
         <tbody>
           <tr ng-repeat="food in foodCtrl.searchResults track by $index"
               ng-if="$index >= foodCtrl.lower && $index < foodCtrl.upper">
-            <th scope="row">{{ food.ndbno }}</th>
-            <td class="text-left">{{ food.name }}</td>
+            <th scope="row"><a ui-sref="food({ ndbno: food.ndbno })">{{ food.ndbno }}</a></th>
+            <td class="text-left"><a ui-sref="food({ ndbno: food.ndbno })">{{ food.name }}</a></td>
             <td>{{ food.group }}</td>
           </tr>
         </tbody>

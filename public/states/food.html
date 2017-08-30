@@ -1,0 +1,13 @@
+<div ng-controller="NutrientController as nutrientCtrl" ng-init="nutrientCtrl.getNutrientList(); nutrientCtrl.getNutrients()">
+
+  <div ng-repeat="proximate in nutrientCtrl.proximates" style="border: 1px solid black">
+    <p>{{proximate.nutrient}} - {{ proximate.gm }}{{ proximate.unit }} per 100g</p>
+  </div>
+  <div ng-repeat="mineral in nutrientCtrl.minerals" style="border: 1px solid red">
+    <p>{{mineral.nutrient}} - {{ mineral.gm }}{{ mineral.unit }} per 100g</p>
+  </div>
+  <div ng-repeat="vitamin in nutrientCtrl.vitamins" style="border: 1px solid green">
+    <p>{{vitamin.nutrient}} - {{ vitamin.gm }}{{ vitamin.unit }} per 100g</p>
+  </div>
+
+</div>

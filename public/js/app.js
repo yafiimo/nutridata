@@ -4,6 +4,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/',
       templateUrl: '../states/home.html'
+    })
+    .state('food', {
+      url: '/food/:ndbno',
+      templateUrl: '../states/food.html'
     });
 
 
