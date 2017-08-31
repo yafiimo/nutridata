@@ -17,9 +17,10 @@ function NutrientController($stateParams, NutrientFactory) {
     NutrientFactory.getNutrients(ndbno).then(
       (success) => {
         console.log('Got nutrients:', success.data);
-        controller.proximates = success.data.proximates;
-        controller.minerals = success.data.minerals;
-        controller.vitamins = success.data.vitamins;
+        controller.foodName = success.data.name;
+        controller.proximates = success.data.nutrients.proximates;
+        controller.minerals = success.data.nutrients.minerals;
+        controller.vitamins = success.data.nutrients.vitamins;
       },
       (error) => {
         console.warn('Could not get nutrients:', error);

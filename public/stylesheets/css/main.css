@@ -7,6 +7,9 @@
 .filter-font {
   font-size: 12px; }
 
+.jumbotron {
+  height: 300px; }
+
 .home-form {
   margin-top: 80px; }
 
@@ -15,6 +18,12 @@
     font-size: 14px; }
 
   .filter-font {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  .jumbotron {
+    height: 400px; }
+
+  .title-font {
+    font-size: 90px; } }
 
 /*# sourceMappingURL=main.css.map */

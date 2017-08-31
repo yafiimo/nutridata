@@ -49,30 +49,30 @@ function getNutrients(req, res) {
   };
 
   request(options, (error, response, body) => {
-    let responseJson = {};
+    let responseJson = JSON.parse(body);
     const nutrientsJson = {
-      proximates: [],
-      minerals: [],
-      vitamins: []
+      name: responseJson.report.foods[0].name,
+      nutrients: {
+        proximates: [],
+        minerals: [],
+        vitamins: []
+      }
     };
+
+    console.log('responseJson', responseJson.report.foods);
+
 
     if (error) {
       console.warn('getNutrientList: could not get nutrients:', error);
       res.status(500).json({message: 'could not get nutrients'});
       return;
     }
-    responseJson = JSON.parse(body).report.foods[0].nutrients;
-    console.log('responseJson', responseJson);
 
-    // for(const nutrient in responseJson) {
-    //   if(nutrientsObject.proximates.hasOwnProperty(nutrient)) nutrientsJson.proximates[nutrient] = responseJson[nutrient];
-    // }
+    responseJson = responseJson.report.foods[0].nutrients;
 
     for(const nutrientGroup in nutrientsObject) {
       for(const nutrient of responseJson) {
-        console.log('1:', nutrientsObject[nutrientGroup][nutrient.nutrient]);
-        console.log('2:', responseJson[nutrient.nutrient]);
-        if(nutrientsObject[nutrientGroup][nutrient.nutrient]) nutrientsJson[nutrientGroup].push(nutrient);
+        if(nutrientsObject[nutrientGroup][nutrient.nutrient]) nutrientsJson.nutrients[nutrientGroup].push(nutrient);
       }
     }
 
