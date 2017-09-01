@@ -59,7 +59,7 @@ function getFoodGroups(req, res) {
 
 function filteredSearch(name, filter) {
   return new Promise((resolve, reject) => {
-    let max = 30;
+    let max = 40;
     if(filter === '') max = 70;
     const options = {
       url: `${FOOD_DATA_BASE_URL}/search/?format=json&q=${name}&max=${max}&ds=Standard Reference&fg=${filter}&api_key=${API_KEY}`

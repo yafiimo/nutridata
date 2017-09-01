@@ -1,29 +1,28 @@
 <div ng-controller="NutrientController as nutrientCtrl" ng-init="nutrientCtrl.getNutrientList(); nutrientCtrl.getNutrients()">
 
-  <div class="jumbotron jumbotron-fluid text-white text-center" style="background-color: orange">
-    <div class="container">
-      <p class="lead">{{ nutrientCtrl.foodName }}</p>
-    </div>
+  <div class="container">
+    <p class="text-white back"><a ui-sref="home">Back to results</a></p>
+    <p class="food-title lead text-white text-center my-4">{{ nutrientCtrl.foodName }}</p>
   </div>
 
   <div class="container">
-    <div class="row mt-4">
+    <div class="row">
 
-      <div class="col-md-3 ml-md-4 mr-md-4" style="border: 1px solid black">
-        <div ng-repeat="proximate in nutrientCtrl.proximates">
-          <p>{{proximate.nutrient}} - {{ proximate.gm }}{{ proximate.unit }} per 100g</p>
+      <div class="col-md-3 mx-md-4 mb-4">
+        <div class="card card-block">
+          <p ng-repeat="proximate in nutrientCtrl.proximates">{{proximate.nutrient}} - {{ proximate.gm }}{{ proximate.unit }} per 100g</p>
         </div>
       </div>
 
-      <div class="col-md-3 mr-md-4" style="border: 1px solid red">
-        <div ng-repeat="mineral in nutrientCtrl.minerals">
-          <p>{{mineral.nutrient}} - {{ mineral.gm }}{{ mineral.unit }} per 100g</p>
+      <div class="col-md-3 mr-md-4 mb-4">
+        <div class="card card-block">
+          <p ng-repeat="mineral in nutrientCtrl.minerals">{{mineral.nutrient}} - {{ mineral.gm }}{{ mineral.unit }} per 100g</p>
         </div>
       </div>
 
-      <div class="col-md-3" style="border: 1px solid green">
-        <div ng-repeat="vitamin in nutrientCtrl.vitamins">
-          <p>{{vitamin.nutrient}} - {{ vitamin.gm }}{{ vitamin.unit }} per 100g</p>
+      <div class="col-md-3 mb-4">
+        <div class="card card-block">
+          <p ng-repeat="vitamin in nutrientCtrl.vitamins">{{vitamin.nutrient}} - {{ vitamin.gm }}{{ vitamin.unit }} per 100g</p>
         </div>
       </div>
 

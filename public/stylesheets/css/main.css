@@ -12,7 +12,8 @@ th a, td a {
   border-top-color: transparent; }
 
 #collapse-filters .card {
-  background-color: rgba(255, 255, 255, 0.8); }
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white; }
 
 .page-link {
   background-color: rgba(0, 0, 0, 0.9);
@@ -35,7 +36,7 @@ th a, td a {
 
 .table-style {
   font-size: 12px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 20px; }
 
 .filter-font {
@@ -50,9 +51,27 @@ th a, td a {
 .title p {
   font-size: 25px; }
 
+.food-title {
+  font-size: 25px; }
+
+.back {
+  margin-top: 40px;
+  font-size: 20px; }
+  .back a {
+    color: #00aacc; }
+  .back a:hover {
+    text-decoration: none;
+    color: #0275d8; }
+
 @media (min-width: 576px) {
   .jumbotron {
-    padding-bottom: 5px; } }
+    padding-bottom: 5px; }
+
+  .food-title {
+    font-size: 35px; }
+
+  .back {
+    font-size: 25px; } }
 @media (min-width: 768px) {
   .table-style {
     font-size: 16px; }
