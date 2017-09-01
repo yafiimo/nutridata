@@ -3,10 +3,18 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/',
+      params: {
+        foodName: null,
+        filters: null
+      },
       templateUrl: '../states/home.html'
     })
     .state('food', {
       url: '/food/:ndbno',
+      params: {
+        foodName: null,
+        filters: null
+      },
       templateUrl: '../states/food.html'
     });
 

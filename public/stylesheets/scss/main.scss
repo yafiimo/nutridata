@@ -2,8 +2,6 @@
     display: none;
 }
 
-
-
 th a, td a {
   color: white;
 }
@@ -55,19 +53,20 @@ th a, td a {
 .title p {
   font-size: 25px;
 }
-.food-title {
-  font-size: 25px;
-}
 .back {
-  a {
+  p {
     color: #00aacc;
   }
-  a:hover {
+  p:hover {
     text-decoration: none;
     color: #0275d8;
+    cursor: pointer;
   }
   margin-top: 40px;
   font-size: 20px;
+}
+.food-title {
+  font-size: 25px;
 }
 
 

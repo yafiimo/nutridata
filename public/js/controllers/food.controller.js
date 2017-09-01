@@ -1,4 +1,4 @@
-function FoodController(FoodFactory) {
+function FoodController($state, $stateParams, FoodFactory) {
   const controller = this;
 
   controller.getFoodGroups = () => {
@@ -46,6 +46,13 @@ function FoodController(FoodFactory) {
     controller.upper = page * 10;
   };
 
+  controller.backToResults = () => {
+    $state.go('home', { foodName: $stateParams.foodName, filters: $stateParams.filters });
+    controller.filters = $stateParams.filters;
+    controller.search.foodName = $stateParams.foodName;
+    controller.searchFood();
+  };
+
   function createPagesArray(guests) {
     const pages = Math.ceil(guests.length/10);
     for(let i = 1; i <= pages; i++) {
@@ -55,11 +62,13 @@ function FoodController(FoodFactory) {
 
   function init() {
     controller.searched = false;
+    controller.search = {};
+    console.log($state);
   }
   init();
 }
 
-FoodController.$inject = ['FoodFactory'];
+FoodController.$inject = ['$state', '$stateParams', 'FoodFactory'];
 
 
 angular

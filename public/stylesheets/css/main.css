@@ -51,17 +51,18 @@ th a, td a {
 .title p {
   font-size: 25px; }
 
-.food-title {
-  font-size: 25px; }
-
 .back {
   margin-top: 40px;
   font-size: 20px; }
-  .back a {
+  .back p {
     color: #00aacc; }
-  .back a:hover {
+  .back p:hover {
     text-decoration: none;
-    color: #0275d8; }
+    color: #0275d8;
+    cursor: pointer; }
+
+.food-title {
+  font-size: 25px; }
 
 @media (min-width: 576px) {
   .jumbotron {
