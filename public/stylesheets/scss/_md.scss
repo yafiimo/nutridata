@@ -1,15 +1,22 @@
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .table-font {
-    font-size: 14px;
+  .table-style {
+    font-size: 16px;
   }
   .filter-font {
     font-size: 14px;
   }
   .jumbotron {
-    height: 400px;
+    padding-bottom: 5px;
   }
-  .title-font {
+  .home-form {
+    margin-top: 0px;
+  }
+  .title h1 {
+    margin-top: 40px;
     font-size: 90px
+  }
+  .title p {
+    font-size: 35px;
   }
 }

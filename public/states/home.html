@@ -1,7 +1,7 @@
 <div ng-controller="FoodController as foodCtrl" ng-init="foodCtrl.getFoodGroups()">
 
-  <div class="jumbotron jumbotron-fluid text-white text-center" style="background-color: orange">
-    <div class="container align-items-center">
+  <div class="jumbotron jumbotron-fluid text-white text-center mb-0">
+    <div class="container align-items-center title">
       <h1 class="display-4 title-font">Nutridata</h1>
       <p class="lead">Search for your food's nutrition values</p>
     </div>
@@ -16,7 +16,7 @@
           <input type="text" class="form-control" placeholder="Search for a food..." ng-model="foodCtrl.search.foodName">
         </div>
 
-        <div class="col-sm-2 ml-sm-0 pl-sm-0 mt-1 mt-sm-0">
+        <div class="col-sm-2 ml-sm-0 mt-1 mt-sm-0 pr-sm-0">
           <button type="submit" class="btn btn-block" ng-click="foodCtrl.searchFood()">Search</button>
         </div>
 
@@ -24,25 +24,24 @@
     </form>
     <!-- if search returns no results -->
     <div ng-if="!foodCtrl.searched && foodCtrl.searchResults"  class="container text-center">
-      <p class="text-muted font-italic">Your search returned no results</p>
+      <p class="text-white font-italic">Your search returned no results</p>
     </div>
 
   </div>
 
   <!-- edit search after successful search -->
-  <div ng-if="foodCtrl.searched" class="container mt-4 text-center">
+  <div ng-if="foodCtrl.searched" class="container mt-2 text-center" style="background-color: transp">
 
     <!-- search filters -->
-    <h3>Edit your search:</h3>
     <form class="mt-4">
       <div class="form-group">
         <p>
           <button class="btn" type="button" data-toggle="collapse"
-                  data-target="#collapseFilters" aria-expanded="false"
-                  aria-controls="collapseFilters">Toggle Filters
-        </button>
+                  data-target="#collapse-filters" aria-expanded="false"
+                  aria-controls="collapse-filters">Toggle Filters
+          </button>
         </p>
-        <div class="collapse" id="collapseFilters">
+        <div class="collapse" id="collapse-filters">
           <div class="card card-block">
             <div class="form-group row justify-content-center">
               <div ng-repeat="group in foodCtrl.foodGroups" class="form-check form-check-inline filter-font">
@@ -70,15 +69,15 @@
 
     <!-- if search returns no results -->
     <div ng-if="foodCtrl.searchResults.length === 0"  class="container text-center">
-      <p class="text-muted font-italic">Your search returned no results</p>
+      <p class="text-white font-italic">Your search returned no results</p>
     </div>
 
   <!-- Search Results -->
     <div ng-if="foodCtrl.searchResults.length > 0" class="container text-center">
 
-      <table class="table table-warning table-font">
+      <table class="table table-style">
         <thead>
-          <tr class="text-white" style="background-color: orange">
+          <tr class="text-white">
             <th>DB No</th>
             <th>Name</th>
             <th class="text-center">Group</th>
@@ -89,17 +88,17 @@
               ng-if="$index >= foodCtrl.lower && $index < foodCtrl.upper">
             <th scope="row"><a ui-sref="food({ ndbno: food.ndbno })">{{ food.ndbno }}</a></th>
             <td class="text-left"><a ui-sref="food({ ndbno: food.ndbno })">{{ food.name }}</a></td>
-            <td>{{ food.group }}</td>
+            <td class="text-white">{{ food.group }}</td>
           </tr>
         </tbody>
       </table>
 
       <div class="container justify-content-center">
-        <div class="">
+        <div>
           <nav aria-label="Page navigation">
-            <ul class="pagination">
+            <ul class="pagination justify-content-center">
               <li ng-repeat="page in foodCtrl.pageNumbers" ng-click="foodCtrl.changePage(page)"
-                  ng-disabled="foodCtrl.upper === page * 10" class="page-item" ng-class="{ 'active': foodCtrl.upper === page * 10 }">
+                  ng-disabled="foodCtrl.upper === page * 10" class="page-item mb-4" ng-class="{ 'active': foodCtrl.upper === page * 10 }">
                 <p class="page-link">{{page}}</p>
               </li>
             </ul>
