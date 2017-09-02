@@ -13,7 +13,6 @@ function FoodController($state, $stateParams, FoodFactory) {
   controller.getFoodGroups = () => {
     FoodFactory.getFoodGroups().then(
       (success) => {
-        console.log('got food groups:', success.data);
         controller.foodGroups = success.data.list.item;
       },
       (error) => {
@@ -24,15 +23,9 @@ function FoodController($state, $stateParams, FoodFactory) {
 
   controller.searchFood = () => {
     controller.search.foodGroups = '';
-    if(controller.filters) {
-      createFilterQuery();
-    }
+    if(controller.filters) createFilterQuery();
     sendSearch();
   };
-
-
-
-
 
   function createFilterQuery() {
     const foodGroups = [];
@@ -45,7 +38,6 @@ function FoodController($state, $stateParams, FoodFactory) {
   function sendSearch() {
     FoodFactory.searchFood(controller.search).then(
       (success) => {
-        console.log('got food:', success.data);
         controller.lower = 0;
         controller.upper = 10;
         controller.pageNumbers = [];
