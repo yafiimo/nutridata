@@ -1,11 +1,11 @@
-<div ng-controller="NutrientController as nutrientCtrl" ng-init="nutrientCtrl.getNutrients()">
+<div ng-controller="NutrientController as nutrientCtrl">
 
   <div ng-controller="FoodController as foodCtrl" class="container back">
     <p ng-click="foodCtrl.backToResults()">Back to results</p>
     <p class="food-title lead text-white text-center my-4">{{ nutrientCtrl.foodName }}</p>
   </div>
 
-  <div class="container">
+  <!-- <div class="container">
     <div class="row justify-content-center">
 
       <div class="col-md-6 col-xl-4 mb-4">
@@ -27,14 +27,45 @@
       </div>
 
     </div>
+  </div> -->
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card card-block">
+          <div ng-if="nutrientCtrl.loaded">
+            <div class="container">
+              <my-chart values="nutrientCtrl.nutrients.proximates.chartData.values"></my-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card card-block">
+          <div ng-if="nutrientCtrl.loaded">
+            <div class="container">
+              <my-chart values="nutrientCtrl.nutrients.minerals.chartData.values"></my-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card card-block">
+          <div ng-if="nutrientCtrl.loaded">
+            <div class="container">
+              <my-chart values="nutrientCtrl.nutrients.vitamins.chartData.values"></my-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
 
-  <!-- <div id="mycharts">
-    <div class="container">
-      <my-chart id="chaart" values="nutrientCtrl.numbers"></my-chart>
-    </div>
-  </div> -->
 
 
 </div>
