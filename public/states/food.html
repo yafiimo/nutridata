@@ -6,21 +6,21 @@
   </div>
 
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
 
-      <div class="col-md-3 mx-md-4 mb-4">
+      <div class="col-md-6 col-xl-4 mb-4">
         <div class="card card-block">
           <p ng-repeat="proximate in nutrientCtrl.proximates">{{proximate.nutrient}} - {{ proximate.gm }}{{ proximate.unit }} per 100g</p>
         </div>
       </div>
 
-      <div class="col-md-3 mr-md-4 mb-4">
+      <div class="col-md-6 col-xl-4 mb-4">
         <div class="card card-block">
           <p ng-repeat="mineral in nutrientCtrl.minerals">{{mineral.nutrient}} - {{ mineral.gm }}{{ mineral.unit }} per 100g</p>
         </div>
       </div>
 
-      <div class="col-md-3 mb-4">
+      <div class="col-md-6 col-xl-4 mb-4">
         <div class="card card-block">
           <p ng-repeat="vitamin in nutrientCtrl.vitamins">{{vitamin.nutrient}} - {{ vitamin.gm }}{{ vitamin.unit }} per 100g</p>
         </div>
