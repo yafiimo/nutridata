@@ -1,6 +1,15 @@
 function FoodController($state, $stateParams, FoodFactory) {
   const controller = this;
 
+  controller.changePage = (page) => {
+    controller.lower = (page * 10) - 10;
+    controller.upper = page * 10;
+  };
+
+  controller.backToResults = () => {
+    $state.go('results', { foodName: $stateParams.foodName, filters: $stateParams.filters });
+  };
+
   controller.getFoodGroups = () => {
     FoodFactory.getFoodGroups().then(
       (success) => {
@@ -14,13 +23,26 @@ function FoodController($state, $stateParams, FoodFactory) {
   };
 
   controller.searchFood = () => {
+    controller.search.foodGroups = '';
+    if(controller.filters) {
+      createFilterQuery();
+    }
+    sendSearch();
+  };
+
+
+
+
+
+  function createFilterQuery() {
     const foodGroups = [];
     for(const filter in controller.filters) {
-      if(controller.filters[filter]) {
-        foodGroups.push(filter);
-      }
+      if(controller.filters[filter]) foodGroups.push(filter);
     }
     controller.search.foodGroups = foodGroups.join('-');
+  }
+
+  function sendSearch() {
     FoodFactory.searchFood(controller.search).then(
       (success) => {
         console.log('got food:', success.data);
@@ -28,7 +50,6 @@ function FoodController($state, $stateParams, FoodFactory) {
         controller.upper = 10;
         controller.pageNumbers = [];
         if(!success.data.errors) {
-          controller.searched = true;
           controller.searchResults = success.data;
           createPagesArray(controller.searchResults);
         } else {
@@ -39,19 +60,7 @@ function FoodController($state, $stateParams, FoodFactory) {
         console.warn('Error could not get food data:', error);
       }
     );
-  };
-
-  controller.changePage = (page) => {
-    controller.lower = (page * 10) - 10;
-    controller.upper = page * 10;
-  };
-
-  controller.backToResults = () => {
-    $state.go('home', { foodName: $stateParams.foodName, filters: $stateParams.filters });
-    controller.filters = $stateParams.filters;
-    controller.search.foodName = $stateParams.foodName;
-    controller.searchFood();
-  };
+  }
 
   function createPagesArray(guests) {
     const pages = Math.ceil(guests.length/10);
@@ -61,9 +70,9 @@ function FoodController($state, $stateParams, FoodFactory) {
   }
 
   function init() {
-    controller.searched = false;
     controller.search = {};
-    console.log($state);
+    controller.search.foodName = $stateParams.foodName;
+    controller.filters = $stateParams.filters;
   }
   init();
 }
