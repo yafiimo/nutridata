@@ -75,10 +75,10 @@ th a, td a {
   -webkit-transition: all 1s ease-out; }
 
 .chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
+  font-size: 15px;
+  background-color: blue;
   text-align: right;
-  padding: 3px;
+  padding: 5px;
   margin: 5px;
   color: white;
   box-shadow: 2px 2px 2px #666; }

@@ -32,35 +32,26 @@
   <div class="container">
     <div class="row justify-content-center">
 
-      <div class="col-md-6 col-xl-4 mb-4">
+      <div class="col-md-6 mb-4">
         <div class="card card-block">
           <div ng-if="nutrientCtrl.loaded">
             <div class="container">
-              <my-chart values="nutrientCtrl.nutrients.proximates.chartData.values"></my-chart>
+              <my-chart data="nutrientCtrl.nutrients.proximates"></my-chart>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-md-6 col-xl-4 mb-4">
+      <div class="col-md-6 mb-4">
         <div class="card card-block">
           <div ng-if="nutrientCtrl.loaded">
             <div class="container">
-              <my-chart values="nutrientCtrl.nutrients.minerals.chartData.values"></my-chart>
+              <my-chart data="nutrientCtrl.nutrients.minerals"></my-chart>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-md-6 col-xl-4 mb-4">
-        <div class="card card-block">
-          <div ng-if="nutrientCtrl.loaded">
-            <div class="container">
-              <my-chart values="nutrientCtrl.nutrients.vitamins.chartData.values"></my-chart>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
