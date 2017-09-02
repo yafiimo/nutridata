@@ -10,23 +10,31 @@
 
       <div class="col-md-6 col-xl-4 mb-4">
         <div class="card card-block">
-          <p ng-repeat="proximate in nutrientCtrl.proximates">{{proximate.nutrient}} - {{ proximate.gm }}{{ proximate.unit }} per 100g</p>
+          <p ng-repeat="proximate in nutrientCtrl.nutrients.proximates.data">{{proximate.nutrient}} - {{ proximate.gm }}{{ proximate.unit }} per 100g</p>
         </div>
       </div>
 
       <div class="col-md-6 col-xl-4 mb-4">
         <div class="card card-block">
-          <p ng-repeat="mineral in nutrientCtrl.minerals">{{mineral.nutrient}} - {{ mineral.gm }}{{ mineral.unit }} per 100g</p>
+          <p ng-repeat="mineral in nutrientCtrl.nutrients.minerals.data">{{mineral.nutrient}} - {{ mineral.gm }}{{ mineral.unit }} per 100g</p>
         </div>
       </div>
 
       <div class="col-md-6 col-xl-4 mb-4">
         <div class="card card-block">
-          <p ng-repeat="vitamin in nutrientCtrl.vitamins">{{vitamin.nutrient}} - {{ vitamin.gm }}{{ vitamin.unit }} per 100g</p>
+          <p ng-repeat="vitamin in nutrientCtrl.nutrients.vitamins.data">{{vitamin.nutrient}} - {{ vitamin.gm }}{{ vitamin.unit }} per 100g</p>
         </div>
       </div>
 
     </div>
   </div>
+
+
+  <!-- <div id="mycharts">
+    <div class="container">
+      <my-chart id="chaart" values="nutrientCtrl.numbers"></my-chart>
+    </div>
+  </div> -->
+
 
 </div>

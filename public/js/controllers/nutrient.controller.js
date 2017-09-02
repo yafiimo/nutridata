@@ -18,16 +18,13 @@ function NutrientController($stateParams, NutrientFactory) {
       (success) => {
         console.log('Got nutrients:', success.data);
         controller.foodName = success.data.name;
-        controller.proximates = success.data.nutrients.proximates;
-        controller.minerals = success.data.nutrients.minerals;
-        controller.vitamins = success.data.nutrients.vitamins;
+        controller.nutrients = success.data.nutrients;
       },
       (error) => {
         console.warn('Could not get nutrients:', error);
       }
     );
   };
-
 
   function init() {
     controller.searched = false;

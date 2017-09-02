@@ -53,9 +53,18 @@ function getNutrients(req, res) {
     const nutrientsJson = {
       name: responseJson.report.foods[0].name,
       nutrients: {
-        proximates: [],
-        minerals: [],
-        vitamins: []
+        proximates: {
+          data: [],
+          chartData: { values: [], nutrients: [], units: [] }
+        },
+        minerals: {
+          data: [],
+          chartData: { values: [], nutrients: [], units: [] }
+        },
+        vitamins: {
+          data: [],
+          chartData: { values: [], nutrients: [], units: [] }
+        }
       }
     };
 
@@ -72,14 +81,35 @@ function getNutrients(req, res) {
 
     for(const nutrientGroup in nutrientsObject) {
       for(const nutrient of responseJson) {
-        if(nutrientsObject[nutrientGroup][nutrient.nutrient]) nutrientsJson.nutrients[nutrientGroup].push(nutrient);
+        if(nutrientsObject[nutrientGroup][nutrient.nutrient]) {
+          nutrientsJson.nutrients[nutrientGroup].data.push(nutrient);
+          if(nutrient.gm !== '--') {
+            nutrientsJson.nutrients[nutrientGroup].chartData.values.push(nutrient.gm);
+            nutrientsJson.nutrients[nutrientGroup].chartData.nutrients.push(nutrient.nutrient);
+            nutrientsJson.nutrients[nutrientGroup].chartData.units.push(nutrient.unit);
+          }
+        }
       }
     }
+
+
 
     console.log(nutrientsJson);
     res.status(200).json(nutrientsJson);
   });
 }
+
+// function createChartData() {
+//   for(const nutrientGroup in controller.nutrients) {
+//     controller.nutrients[nutrientGroup].chartData = [];
+//     controller.nutrients[nutrientGroup].forEach((nutrient) => {
+//       if(nutrient.value !== '--') {
+//         controller.nutrients[nutrientGroup].chartData.push(parseInt(nutrient.value));
+//       }
+//     });
+//     console.log(controller.nutrients[nutrientGroup]);
+//   }
+// }
 
 module.exports = {
   getNutrientList: getNutrientList,
