@@ -13,15 +13,16 @@ function myChart($window) {
       const width = 300;
 
       const yScale = d3.scaleLog();
-      
+
       const xScale = d3.scaleBand()
         .domain(d3.range(scope.chartData.length))
         .rangeRound([0, width])
+        .paddingInner(0.3)
         .paddingOuter(0.3);
 
       const colours = d3.scaleLinear()
         .domain([0, scope.chartData.length])
-        .range(['#00ff00', '#0000ff']);
+        .range(['yellow', 'red']);
 
       const tooltip = d3.select('body').append('div')
         .style('position', 'absolute')

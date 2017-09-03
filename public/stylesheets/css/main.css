@@ -67,6 +67,10 @@ th a, td a {
 .chart {
   margin-top: 50px; }
 
+.chartBox {
+  padding-left: 0px;
+  padding-right: 0px; }
+
 @media (min-width: 576px) {
   .jumbotron {
     padding-bottom: 5px; }
