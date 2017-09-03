@@ -53,9 +53,18 @@ function getNutrients(req, res) {
     const nutrientsJson = {
       name: responseJson.report.foods[0].name,
       nutrients: {
-        proximates: [],
-        minerals: [],
-        vitamins: []
+        proximates: {
+          data: [],
+          chartData: { values: [], nutrients: [], units: [] }
+        },
+        minerals: {
+          data: [],
+          chartData: { values: [], nutrients: [], units: [] }
+        },
+        vitamins: {
+          data: [],
+          chartData: { values: [], nutrients: [], units: [] }
+        }
       }
     };
 
@@ -70,11 +79,16 @@ function getNutrients(req, res) {
 
     responseJson = responseJson.report.foods[0].nutrients;
 
+
     for(const nutrientGroup in nutrientsObject) {
       for(const nutrient of responseJson) {
         if(nutrientsObject[nutrientGroup][nutrient.nutrient]) {
           if(nutrient.gm !== '--') {
-            nutrientsJson.nutrients[nutrientGroup].push(nutrient);
+            nutrientsJson.nutrients[nutrientGroup].data.push(nutrient);
+
+            nutrientsJson.nutrients[nutrientGroup].chartData.values.push(nutrient.gm);
+            nutrientsJson.nutrients[nutrientGroup].chartData.nutrients.push(nutrient.nutrient);
+            nutrientsJson.nutrients[nutrientGroup].chartData.units.push(nutrient.unit);
           }
         }
       }
