@@ -22,7 +22,7 @@ function myChart($window) {
 
       const colours = d3.scaleLinear()
         .domain([0, scope.chartData.length])
-        .range(['yellow', 'red']);
+        .range(['yellow', 'blue']);
 
       const tooltip = d3.select('body').append('div')
         .style('position', 'absolute')
