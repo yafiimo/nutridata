@@ -84,8 +84,9 @@ function getNutrients(req, res) {
       for(const nutrient of responseJson) {
         if(nutrientsObject[nutrientGroup][nutrient.nutrient]) {
           if(nutrient.gm !== '--') {
-            nutrientsJson.nutrients[nutrientGroup].data.push(nutrient);
-
+            if(nutrient.nutrient !== 'Energy') {
+              nutrientsJson.nutrients[nutrientGroup].data.push(nutrient);
+            }
             nutrientsJson.nutrients[nutrientGroup].chartData.values.push(nutrient.gm);
             nutrientsJson.nutrients[nutrientGroup].chartData.nutrients.push(nutrient.nutrient);
             nutrientsJson.nutrients[nutrientGroup].chartData.units.push(nutrient.unit);
