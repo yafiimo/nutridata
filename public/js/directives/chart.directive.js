@@ -49,7 +49,7 @@ function myChart($window) {
         .append('svg')
         .attr('width', width + margin.right + margin.left)
         .attr('height', height + margin.top + margin.bottom)
-        .style('background', 'rgba(255,255,255, 0.8)')
+        .style('background', 'rgba(255,255,255, 1)')
         .style('border', '1px solid black')
         .append('g')
         .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')')
@@ -70,22 +70,34 @@ function myChart($window) {
         .attr('x', (data, index) => xScale(index))
         .attr('y', height)
         .text((data) => data.nutrient)
-        .on('mouseover', (data) => {
+        .on('mouseover', (data, index, nodes) => {
           tooltip.transition()
             .style('opacity', 1);
           tooltip.html(data.gm + data.unit)
             .style('left', (d3.event.pageX) + 'px')
             .style('top', (d3.event.pageY) + 'px');
+          d3.select(nodes[index])
+            .transition()
+              .style('opacity', '0.5');
+        })
+        .on('mouseout', (data, index, nodes) => {
+          tooltip.transition()
+            .style('opacity', 0);
+          d3.select(nodes[index])
+            .transition()
+              .style('opacity', '1');
         });
 
       chart.transition()
           .attr('height', (data) => {
-            return yScale(data.gm);
+            if(data.gm > 1) return yScale(data.gm);
+            return data.gm * 60;
           })
           .attr('y', (data) => {
-            return height - yScale(data.gm);
+            if(data.gm > 1) return height - yScale(data.gm);
+            return height - (data.gm * 60);
           })
-          .duration(900)
+          .duration(1200)
           .delay((data, index) => index * 30)
           .ease(d3.easeElastic);
 
