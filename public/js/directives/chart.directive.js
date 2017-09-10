@@ -50,7 +50,7 @@ function myChart($window) {
         .attr('width', width + margin.right + margin.left)
         .attr('height', height + margin.top + margin.bottom)
         .style('background', 'rgba(255,255,255, 0.8)')
-        .style('border', '1px solid white')
+        .style('border', '1px solid black')
         .append('g')
         .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')')
         .selectAll('rect')

@@ -11,6 +11,7 @@
       <div class="col-md-5 mb-4 mr-2 chart">
           <div ng-if="nutrientCtrl.loaded">
             <div class="container text-center">
+              <p class="lead text-white">Proximates</p>
               <my-chart id="proximates"
                 data="nutrientCtrl.nutrients.proximates.data"
                 chart-data="nutrientCtrl.nutrients.proximates.chartData.values"
@@ -24,6 +25,7 @@
       <div class="col-md-5 mb-4 chart">
         <div ng-if="nutrientCtrl.loaded">
           <div class="container text-center">
+            <p class="lead text-white">Minerals</p>
             <my-chart id="minerals"
               data="nutrientCtrl.nutrients.minerals.data" chart-data="nutrientCtrl.nutrients.minerals.chartData.values"
               domain="2000"
