@@ -96,22 +96,17 @@ function myChart($window) {
         .tickFormat(d3.format('.1f'))
         .tickValues([1,5,20,100]);
 
-      const proxVGuide = d3.select('#proximates svg')
+      d3.select('#proximates svg')
         .append('g')
         .attr('transform', 'translate(35, 0)')
         .call(proxVAxis);
 
-      proxVGuide.selectAll('path')
-        .style('stroke', 'white');
-      proxVGuide.selectAll('line')
-        .style('stroke', 'white');
         // Horizontal Axis
       const proxHScale = d3.scaleBand()
         .domain(d3.range(scope.chartData.length))
         .rangeRound([0, width])
         .paddingInner(0.3)
         .paddingOuter(0.3);
-
 
       // Minerals Axes
         // Vertical Axis
@@ -123,15 +118,10 @@ function myChart($window) {
         .tickFormat(d3.format('.1f'))
         .tickValues([1,3,10,30,100,500,2000]);
 
-      const minVGuide = d3.select('#minerals svg')
+      d3.select('#minerals svg')
         .append('g')
         .attr('transform', 'translate(40, 0)')
         .call(minVAxis);
-
-      minVGuide.selectAll('path')
-        .style('stroke', 'white');
-      minVGuide.selectAll('line')
-        .style('stroke', 'white');
 
         // Horizontal Axis
       const minHScale = d3.scaleBand()
@@ -139,6 +129,14 @@ function myChart($window) {
         .rangeRound([0, width])
         .paddingInner(0.3)
         .paddingOuter(0.3);
+
+      d3.selectAll('svg')
+      .selectAll('path')
+        .style('stroke', 'white');
+
+      d3.selectAll('svg')
+      .selectAll('line')
+        .style('stroke', 'white');
     }
   };
 }
