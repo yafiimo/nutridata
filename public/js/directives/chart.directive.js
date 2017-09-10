@@ -6,12 +6,19 @@ function myChart($window) {
     scope: {
       data: '=',
       chartData: '=',
-      domain: '='
+      domain: '=',
+      nutrients: '='
     },
     link: function(scope, element) {
       const d3 = $window.d3;
-      const height = 350;
-      const width = 300;
+      const margin = {
+        top: 30,
+        right: 30,
+        bottom: 40,
+        left: 50
+      };
+      const height = 350 - margin.top - margin.bottom;
+      const width = 300 - margin.left - margin.right;
 
       const yScale = d3.scaleLog()
       .range([0, height])
@@ -40,10 +47,12 @@ function myChart($window) {
 
       const chart = $window.d3.select(element[0])
         .append('svg')
-        .attr('width', width)
-        .attr('height', height)
-        .style('background', 'rgba(0,0,0, 0.8)')
+        .attr('width', width + margin.right + margin.left)
+        .attr('height', height + margin.top + margin.bottom)
+        .style('background', 'rgba(255,255,255, 0.8)')
         .style('border', '1px solid white')
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')')
         .selectAll('rect')
         .data(scope.data)
         .enter().append('rect')
@@ -69,18 +78,12 @@ function myChart($window) {
             .style('top', (d3.event.pageY) + 'px');
         });
 
-      d3.select('#proximates svg')
-        .enter().style('fill', (data, index) => colours(index));
-
-
       chart.transition()
           .attr('height', (data) => {
-            if(data.gm > 1) return yScale(data.gm);
-            return data.gm * 150;
+            return yScale(data.gm);
           })
           .attr('y', (data) => {
-            if(data.gm > 1) return height - yScale(data.gm);
-            return height - (data.gm * 150);
+            return height - yScale(data.gm);
           })
           .duration(900)
           .delay((data, index) => index * 30)
@@ -98,7 +101,7 @@ function myChart($window) {
 
       d3.select('#proximates svg')
         .append('g')
-        .attr('transform', 'translate(35, 0)')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         .call(proxVAxis);
 
         // Horizontal Axis
@@ -107,6 +110,13 @@ function myChart($window) {
         .rangeRound([0, width])
         .paddingInner(0.3)
         .paddingOuter(0.3);
+
+      const proxHAxis = d3.axisBottom(proxHScale);
+
+      d3.select('#proximates svg')
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + (height + margin.top) + ')')
+        .call(proxHAxis);
 
       // Minerals Axes
         // Vertical Axis
@@ -120,7 +130,7 @@ function myChart($window) {
 
       d3.select('#minerals svg')
         .append('g')
-        .attr('transform', 'translate(40, 0)')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         .call(minVAxis);
 
         // Horizontal Axis
@@ -130,13 +140,21 @@ function myChart($window) {
         .paddingInner(0.3)
         .paddingOuter(0.3);
 
+      const minHAxis = d3.axisBottom(minHScale);
+
+      d3.select('#minerals svg')
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + (height + margin.top) + ')')
+        .call(minHAxis);
+
+      // All axes
       d3.selectAll('svg')
       .selectAll('path')
-        .style('stroke', 'white');
+        .style('stroke', 'black');
 
       d3.selectAll('svg')
       .selectAll('line')
-        .style('stroke', 'white');
+        .style('stroke', 'black');
     }
   };
 }
