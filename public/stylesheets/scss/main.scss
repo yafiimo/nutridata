@@ -16,6 +16,13 @@ th a, td a {
   background-color: rgba(0,0,0,0.9);
   color: white;
 }
+#search {
+  :hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  padding-left: 13px;
+}
 .page-link {
   background-color: rgba(0,0,0,0.9);
   color: white;
@@ -39,7 +46,13 @@ th a, td a {
 .table-style {
   font-size: 12px;
   background-color: rgba(0,0,0,0.9);
-  border-radius: 20px;
+}
+.nutrients-table {
+  font-size: 12px;
+  background-color: rgba(0,0,0,0.9);
+  tbody tr th {
+    font-weight: normal;
+  }
 }
 .filter-font {
   font-size: 12px;
@@ -55,7 +68,7 @@ th a, td a {
 }
 .back {
   p {
-    color: #00aacc;
+    color: white;
   }
   p:hover {
     text-decoration: none;
@@ -66,6 +79,7 @@ th a, td a {
   font-size: 20px;
 }
 .food-title {
+  margin-top: 20px;
   font-size: 25px;
 }
 
@@ -77,6 +91,7 @@ th a, td a {
   padding-left: 0px;
   padding-right: 0px;
 }
+
 
 
 

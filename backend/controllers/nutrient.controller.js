@@ -83,10 +83,12 @@ function getNutrients(req, res) {
     for(const nutrientGroup in nutrientsObject) {
       for(const nutrient of responseJson) {
         if(nutrientsObject[nutrientGroup][nutrient.nutrient]) {
-          if(nutrient.gm !== '--') {
-            if(nutrient.nutrient !== 'Energy') {
-              nutrientsJson.nutrients[nutrientGroup].data.push(nutrient);
-            }
+          if(nutrient.nutrient === 'Energy') nutrientsJson.nutrients.proximates.energy = {
+            value: nutrient.gm,
+            unit: nutrient.unit
+          };
+          if(nutrient.gm !== '--' && nutrient.gm !== 0 && nutrient.nutrient !== 'Energy') {
+            nutrientsJson.nutrients[nutrientGroup].data.push(nutrient);
             nutrientsJson.nutrients[nutrientGroup].chartData.values.push(nutrient.gm);
             nutrientsJson.nutrients[nutrientGroup].chartData.nutrients.push(nutrient.nutrient);
             nutrientsJson.nutrients[nutrientGroup].chartData.units.push(nutrient.unit);

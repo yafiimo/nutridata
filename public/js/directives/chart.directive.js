@@ -9,7 +9,7 @@ function myChart($window) {
       domain: '=',
       nutrients: '='
     },
-    link: function(scope, element) {
+    link: (scope, element) => {
       const d3 = $window.d3;
       const margin = {
         top: 30,
@@ -26,9 +26,7 @@ function myChart($window) {
 
       const xScale = d3.scaleBand()
         .domain(d3.range(scope.chartData.length))
-        .rangeRound([0, width])
-        .paddingInner(0.3)
-        .paddingOuter(0.3);
+        .rangeRound([0, width]);
 
       const colours1 = d3.scaleLinear()
         .domain([0, scope.chartData.length])
@@ -69,11 +67,10 @@ function myChart($window) {
         .attr('width', xScale.bandwidth())
         .attr('x', (data, index) => xScale(index))
         .attr('y', height)
-        .text((data) => data.nutrient)
         .on('mouseover', (data, index, nodes) => {
           tooltip.transition()
             .style('opacity', 1);
-          tooltip.html(data.gm + data.unit)
+          tooltip.html(`${data.nutrient}<br>${data.gm}${data.unit}`)
             .style('left', (d3.event.pageX) + 'px')
             .style('top', (d3.event.pageY) + 'px');
           d3.select(nodes[index])
@@ -90,12 +87,22 @@ function myChart($window) {
 
       chart.transition()
           .attr('height', (data) => {
-            if(data.gm > 1) return yScale(data.gm);
-            return data.gm * 60;
+            if(data.gm > 0.1) {
+              return yScale(data.gm);
+            } else if(data.gm > 0.01) {
+              return data.gm * 300;
+            } else {
+              return data.gm * 1000;
+            }
           })
           .attr('y', (data) => {
-            if(data.gm > 1) return height - yScale(data.gm);
-            return height - (data.gm * 60);
+            if(data.gm > 0.1) {
+              return height - yScale(data.gm);
+            } else if(data.gm > 0.01) {
+              return height - (data.gm * 300);
+            } else {
+              return height - (data.gm * 1000);
+            }
           })
           .duration(1200)
           .delay((data, index) => index * 30)
@@ -118,10 +125,7 @@ function myChart($window) {
 
         // Horizontal Axis
       const proxHScale = d3.scaleBand()
-        .domain(d3.range(scope.chartData.length))
-        .rangeRound([0, width])
-        .paddingInner(0.3)
-        .paddingOuter(0.3);
+        .rangeRound([0, width]);
 
       const proxHAxis = d3.axisBottom(proxHScale);
 
@@ -147,10 +151,7 @@ function myChart($window) {
 
         // Horizontal Axis
       const minHScale = d3.scaleBand()
-        .domain(d3.range(scope.chartData.length))
-        .rangeRound([0, width])
-        .paddingInner(0.3)
-        .paddingOuter(0.3);
+        .rangeRound([0, width]);
 
       const minHAxis = d3.axisBottom(minHScale);
 
