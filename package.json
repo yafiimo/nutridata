@@ -1,5 +1,5 @@
 {
-  "name": "food-data",
+  "name": "nutridata",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yafiimo/food-data.git"
+    "url": "git+https://github.com/yafiimo/nutridata.git"
   },
-  "author": "",
+  "author": "yafiimo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yafiimo/food-data/issues"
+    "url": "https://github.com/yafiimo/nutridata/issues"
   },
-  "homepage": "https://github.com/yafiimo/food-data#readme",
+  "homepage": "https://github.com/yafiimo/nutridata#readme",
   "dependencies": {
     "@uirouter/angularjs": "^1.0.6",
     "angular": "^1.6.6",
