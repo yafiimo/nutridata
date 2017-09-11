@@ -4,7 +4,6 @@ function NutrientController($stateParams, NutrientFactory) {
   controller.getNutrientList = () => {
     NutrientFactory.getNutrientList().then(
       (success) => {
-        console.log('Got nutrient list:', success.data);
         controller.nutrientList = success.data;
       },
       (error) => {
@@ -16,7 +15,6 @@ function NutrientController($stateParams, NutrientFactory) {
     const ndbno = $stateParams.ndbno;
     NutrientFactory.getNutrients(ndbno).then(
       (success) => {
-        console.log('Got nutrients:', success.data);
         controller.foodName = success.data.name;
         controller.nutrients = success.data.nutrients;
         controller.loaded = true;
